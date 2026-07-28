@@ -57,33 +57,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
----
-
-## BOBLO'S Admin Dashboard Panel
-
-A premium backend management interface designed to manage all dynamic content, categories, menu items, and static page sections.
-
-### Admin Setup Instructions
-
-1. **Run Migrations & Seeders** (Installs the database schema and default admin credentials):
-   ```bash
-   php artisan migrate:fresh --seed
-   ```
-
-2. **Connect Public Storage Link** (Enables rendering uploaded item and settings images):
-   ```bash
-   php artisan storage:link
-   ```
-
-3. **Login Details**:
-   - Access URL: `http://127.0.0.1:8000/admin/login`
-   - Email: **`admin@fignolive.pk`**
-   - Password: **`password`**
-
-4. **Features Built**:
-   - **Dashboard**: High-level counts and overview of recently added items.
-   - **Categories CRUD**: Add and edit menu categories with image uploading, status, and display orders.
-   - **Menu Items CRUD**: Create menu items with discount price options, tags, availability toggle, and home featured switch.
-   - **Page Content Manager**: Edit dynamic fields/sections for any static page using a JSON content store and rich text TinyMCE WYSIWYG editor.
-   - **General Settings**: Edit site brand names, contact phones/emails, opening times, custom logo and favicon files.
-
