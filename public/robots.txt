@@ -1,0 +1,6 @@
+User-agent: Googlebot
+Allow: /sitemaps/
+
+User-agent: *
+Allow: /
+Sitemap: https://fignolive.pk/sitemap.xml
