@@ -5,7 +5,7 @@
             <div class="footer-five__instagram-item">
               <div class="item-thumb">
                 <img
-                  src="{{ asset('assets/images/patisserie/footer/instagram/thumb-1.png') }}"
+                  src="{{ asset('assets/img/thumb-3.png') }}"
                   alt="thumb"
                 />
               </div>
@@ -16,7 +16,7 @@
             <div class="footer-five__instagram-item">
               <div class="item-thumb">
                 <img
-                  src="{{ asset('assets/images/patisserie/footer/instagram/thumb-2.png') }}"
+                  src="{{ asset('assets/img/thumb-3.png') }}"
                   alt="thumb"
                 />
               </div>
@@ -27,7 +27,7 @@
             <div class="footer-five__instagram-item">
               <div class="item-thumb">
                 <img
-                  src="{{ asset('assets/images/patisserie/footer/instagram/thumb-3.png') }}"
+                  src="{{ asset('assets/img/thumb-3.png') }}"
                   alt="thumb"
                 />
               </div>
@@ -38,7 +38,7 @@
             <div class="footer-five__instagram-item">
               <div class="item-thumb">
                 <img
-                  src="{{ asset('assets/images/patisserie/footer/instagram/thumb-4.png') }}"
+                  src="{{ asset('assets/img/thumb-3.png') }}"
                   alt="thumb"
                 />
               </div>
@@ -49,7 +49,7 @@
             <div class="footer-five__instagram-item">
               <div class="item-thumb">
                 <img
-                  src="{{ asset('assets/images/patisserie/footer/instagram/thumb-5.png') }}"
+                  src="{{ asset('assets/img/thumb-3.png') }}"
                   alt="thumb"
                 />
               </div>
@@ -60,7 +60,7 @@
             <div class="footer-five__instagram-item">
               <div class="item-thumb">
                 <img
-                  src="{{ asset('assets/images/patisserie/footer/instagram/thumb-6.png') }}"
+                  src="{{ asset('assets/img/thumb-3.png') }}"
                   alt="thumb"
                 />
               </div>
@@ -71,7 +71,7 @@
             <div class="footer-five__instagram-item">
               <div class="item-thumb">
                 <img
-                  src="{{ asset('assets/images/patisserie/footer/instagram/thumb-7.png') }}"
+                  src="{{ asset('assets/img/thumb-3.png') }}"
                   alt="thumb"
                 />
               </div>
@@ -82,7 +82,7 @@
             <div class="footer-five__instagram-item">
               <div class="item-thumb">
                 <img
-                  src="{{ asset('assets/images/patisserie/footer/instagram/thumb-8.png') }}"
+                  src="{{ asset('assets/img/thumb-3.png') }}"
                   alt="thumb"
                 />
               </div>
@@ -95,7 +95,7 @@
       </div>
       <div class="footer-five__tricker">
         <div class="slide-track" data-speed="30" data-gap="0">
-          <h3 class="tricker-text">Dinevo</h3>
+          <h3 class="tricker-text">Boblo's</h3>
           <h3 class="tricker-text no-fill">
             <div class="trackir-icon">
               <svg
@@ -159,7 +159,7 @@
                 />
               </svg>
             </div>
-            Dinevo
+            Boblo's
             <div class="trackir-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -227,7 +227,7 @@
               </svg>
             </div>
           </h3>
-          <h3 class="tricker-text">Dinevo</h3>
+          <h3 class="tricker-text">Boblo's</h3>
           <h3 class="tricker-text no-fill">
             <div class="trackir-icon">
               <svg
@@ -291,7 +291,7 @@
                 />
               </svg>
             </div>
-            Dinevo
+            Boblo's
             <div class="trackir-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -370,11 +370,10 @@
                 <div class="footer-widget widget-contact-info">
                   <h4 class="widget-title">Contact info</h4>
                   <div class="widget-content">
-                    <p>Phone: +1 (555) 123-4567</p>
-                    <p>Email: info@dinevo.com</p>
+                    <p>Phone: {{ \App\Models\Setting::get('contact_phone') }}</p>
+                    <p>Email: {{ \App\Models\Setting::get('contact_email') }}</p>
                     <p>
-                      Location: Main Street, <br />
-                      City Center, London, UK
+                      {!! nl2br(e(\App\Models\Setting::get('contact_address', "Location: Main Street,\nCity Center, London, UK"))) !!}
                     </p>
                   </div>
                 </div>
@@ -382,7 +381,6 @@
                   <h4 class="widget-title">Quick links</h4>
                   <ul class="link-list">
                     <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('login') }}">Account</a></li>
                     <li><a href="{{ route('menu') }}">Menu</a></li>
                     <li><a href="{{ route('contact') }}">Contact</a></li>
                   </ul>
@@ -397,6 +395,9 @@
                 </div>
                 <div class="footer-widget widget-subscribe">
                   <h4 class="widget-title">Opening hours</h4>
+                  <p>
+                    10:00Am
+                  </p>
                   <div class="widget-content">
                     <p>
                       Subscribe to receive updates on new pastries and seasonal
@@ -426,7 +427,7 @@
                 <div class="werappe-left">
                   <p class="copyright">
                     © <span class="current-year">2026</span>
-                    <a href="{{ route('home') }}">Dinevo.</a> All rights reserved.
+                    <a href="{{ route('home') }}">Boblo's.</a> All rights reserved.
                   </p>
                 </div>
                 <div class="werappe-right">

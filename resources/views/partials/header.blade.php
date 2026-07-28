@@ -43,8 +43,13 @@
             </div>
             <div class="col-auto col-xl-2 order-1 order-lg-2">
               <div class="menu-logo-wrap">
-                <a href="{{ route('home') }}"><img src="{{ asset('assets/images/Logo_pink.png') }}" alt="logo"
-                /></a>
+                <a href="{{ route('home') }}">
+                  @if(\App\Models\Setting::get('logo'))
+                    <img src="{{ asset('storage/' . \App\Models\Setting::get('logo')) }}" alt="logo" />
+                  @else
+                    <img src="{{ asset('assets/img/Logo_pink.png') }}" alt="logo" />
+                  @endif
+                </a>
               </div>
             </div>
             <div class="col-auto order-3 hamburger-menu position-relative">

@@ -12,7 +12,7 @@ class SettingController extends Controller
     public function index()
     {
         $settings = [
-            'site_name' => Setting::get('site_name', 'BOBLO'S'),
+            'site_name' => Setting::get('site_name', "BOBLO'S"),
             'contact_phone' => Setting::get('contact_phone', '0345 0845454'),
             'contact_email' => Setting::get('contact_email', 'info@fignolive.pk'),
             'contact_address' => Setting::get('contact_address', 'One Piccadilly, Business Square, Gulberg Greens, Islamabad, Pakistan'),

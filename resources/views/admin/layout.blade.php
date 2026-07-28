@@ -584,7 +584,11 @@
             <div class="p-6 flex-1 overflow-y-auto">
                 <!-- Brand logo -->
                 <div class="flex items-center gap-3 mb-8 px-2">
-                    <img src="{{ asset('assets/images/Logo_pink.png') }}" class="h-10 w-auto object-contain" alt="BOBLO'S Logo">
+                    @if(\App\Models\Setting::get('logo'))
+                        <img src="{{ asset('storage/' . \App\Models\Setting::get('logo')) }}" class="h-10 w-auto object-contain" alt="BOBLO'S Logo">
+                    @else
+                        <img src="{{ asset('assets/img/Logo_pink.png') }}" class="h-10 w-auto object-contain" alt="BOBLO'S Logo">
+                    @endif
                 </div>
 
                 <nav class="space-y-1.5">

@@ -7,6 +7,10 @@
   .menu-five__item .item-header .item-title, .menu-five__item .item-header .item-price{
     line-height: 2;
   }
+  .common-button-five{
+    color: #fff;
+    border: 1px solid #fff
+  }
 </style>
 @php
   $heroSection = \App\Models\PageSection::where('section_key', 'home_hero')->first();
@@ -35,7 +39,7 @@
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgb(238 124 139 / 19%); z-index: -1;"></div>
         <div class="icon-1 shape-image">
           <img
-            src="{{ asset('assets/images/patisserie/hero/Icon-1.svg') }}"
+            src="{{ asset('assets/img/Icon-1.svg') }}"
             alt="icon"
             class="shape"
             data-speed="0.03"
@@ -43,7 +47,7 @@
         </div>
         <div class="icon-2 shape-image">
           <img
-            src="{{ asset('assets/images/patisserie/hero/Icon-2.svg') }}"
+            src="{{ asset('assets/img/Icon-2.svg') }}"
             alt="icon"
             class="shape"
             data-speed="0.06"
@@ -229,7 +233,7 @@
           <div class="row">
             <div class="col-12">
               <div class="patisserie__header text-center">
-                <h2 class="header-title mx-auto">Cake menu</h2>
+                <h2 class="header-title mx-auto">Our Menu</h2>
               </div>
               
               @if(isset($homeMenuCategories) && $homeMenuCategories->count() > 0)
@@ -298,7 +302,7 @@
                           @if($category->image)
                             <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}" style="max-height: 280px; object-fit: contain;" />
                           @else
-                            <img src="{{ asset('assets/images/patisserie/menu/thumb-1.png') }}" alt="{{ $category->name }}" style="max-height: 280px; object-fit: contain;" />
+                            <img src="{{ asset('assets/img/thumb-1.png') }}" alt="{{ $category->name }}" style="max-height: 280px; object-fit: contain;" />
                           @endif
                         </div>
 
@@ -338,40 +342,53 @@
           <h3 class="tricker-text no-fill">Luxury Bakes</h3>
           <div class="tricker-icon no-fill">
             <img
-              src="{{ asset('assets/images/patisserie/tricker/Icon-1.svg') }}"
+              src="{{ asset('assets/img/tricker/Icon-1.svg') }}"
               alt="Icon"
             />
           </div>
           <h3 class="tricker-text">Fresh & Sweet</h3>
           <div class="tricker-icon no-fill">
             <img
-              src="{{ asset('assets/images/patisserie/tricker/Icon-2.svg') }}"
+              src="{{ asset('assets/img/tricker/Icon-2.svg') }}"
               alt="Icon"
             />
           </div>
           <h3 class="tricker-text no-fill">Fine Desserts</h3>
           <div class="tricker-icon no-fill">
             <img
-              src="{{ asset('assets/images/patisserie/tricker/Icon-1.svg') }}"
+              src="{{ asset('assets/img/tricker/Icon-1.svg') }}"
               alt="Icon"
             />
           </div>
           <h3 class="tricker-text">Fresh & Sweet</h3>
           <div class="tricker-icon no-fill">
             <img
-              src="{{ asset('assets/images/patisserie/tricker/Icon-2.svg') }}"
+              src="{{ asset('assets/img/tricker/Icon-2.svg') }}"
               alt="Icon"
             />
           </div>
         </div>
       </section>
+      @php
+        $timingSection = \App\Models\PageSection::where('section_key', 'home_timing')->first();
+        $timingContent = $timingSection ? $timingSection->content : [];
+        $img1 = $timingContent['image_one'] ?? '';
+        $img2 = $timingContent['image_two'] ?? '';
+      @endphp
       <section class="opening-five section">
         <div class="opening-five__wrapper">
           <div class="opening-five__thumb">
-            <img
-              src="{{ asset('assets/images/patisserie/opening/thumb-1.png') }}"
-              alt="thumb"
-            />
+            @if($img1)
+              <img
+                src="{{ asset('storage/' . $img1) }}"
+                alt="thumb"
+              />
+            @else
+              <img
+                src="{{ asset('assets/images/patisserie/opening/thumb-1.png') }}"
+                alt="thumb"
+              />
+            @endif
           </div>
           <div class="opening-five__content">
             <div class="icon">
@@ -460,23 +477,28 @@
             <div class="opening-times">
               <h4 class="title">Opening Time</h4>
               <div class="times">
-                <p>Mon – Fri: 12 PM – 10 PM</p>
-                <p>Sat – Sun: 1 PM – 11 PM</p>
+                <p>{!! nl2br(e(\App\Models\Setting::get('opening_hours', "Mon – Fri: 12 PM – 10 PM\nSat – Sun: 1 PM – 11 PM"))) !!}</p>
               </div>
             </div>
             <div class="opening-location">
               <h4 class="title">Location</h4>
               <p class="address">
-                Location: Main Street, <br />
-                City Center, London, UK
+                {!! nl2br(e(\App\Models\Setting::get('contact_address', "Location: Main Street,\nCity Center, London, UK"))) !!}
               </p>
             </div>
           </div>
           <div class="opening-five__thumb">
-            <img
-              src="{{ asset('assets/images/patisserie/opening/thumb-2.png') }}"
-              alt="thumb"
-            />
+            @if($img2)
+              <img
+                src="{{ asset('storage/' . $img2) }}"
+                alt="thumb"
+              />
+            @else
+              <img
+                src="{{ asset('assets/images/patisserie/opening/thumb-2.png') }}"
+                alt="thumb"
+              />
+            @endif
           </div>
         </div>
       </section>
@@ -511,7 +533,7 @@
               <div class="testimonial-five__wrapper">
                 <div class="testimonial-five__thumb">
                   <img
-                    src="{{ asset('assets/images/patisserie/testimonial/thumb.png') }}"
+                    src="{{ asset('assets/img/2.jpeg') }}"
                     alt="thumb"
                   />
                 </div>
@@ -519,109 +541,50 @@
                   <div class="testimonial-five__slider-wrapper">
                     <div class="swiper testimonial-five__slider">
                       <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                          <div class="testimonial-five__item">
-                            <div class="item-icon">
-                              <img
-                                src="{{ asset('assets/images/patisserie/testimonial/quote-icon.svg') }}"
-                                alt="author"
-                              />
-                            </div>
-                            <p class="item-text">
-                              “ From the moment you walk in, the aroma of
-                              freshly baked pastries makes you feel at home. The
-                              croissants are perfectly flaky, the cakes are rich
-                              without being too sweet, and everything feels. ”
-                            </p>
-                            <div class="item-footer">
-                              <div class="author">
-                                <div class="author-thumb">
+                        @if(isset($testimonials) && $testimonials->count() > 0)
+                          @foreach($testimonials as $testimonial)
+                            <div class="swiper-slide">
+                              <div class="testimonial-five__item">
+                                <div class="item-icon">
                                   <img
-                                    src="{{ asset('assets/images/patisserie/testimonial/author-1.png') }}"
-                                    alt=""
+                                    src="{{ asset('assets/img/quote-icon.svg') }}"
+                                    alt="author"
                                   />
                                 </div>
-                                <div class="author-info">
-                                  <h4 class="name">Sarah Johnson</h4>
-                                  <span class="designation">CEO & Founder</span>
+                                <p class="item-text">
+                                  “ {{ $testimonial->content }} ”
+                                </p>
+                                <div class="item-footer">
+                                  <div class="author">
+                                    <div class="author-thumb">
+                                      @if($testimonial->image)
+                                        <img
+                                          src="{{ asset('storage/' . $testimonial->image) }}"
+                                          alt="{{ $testimonial->name }}"
+                                        />
+                                      @else
+                                        <img
+                                          src="{{ asset('assets/images/patisserie/testimonial/author-' . (($loop->index % 3) + 1) . '.png') }}"
+                                          alt="{{ $testimonial->name }}"
+                                        />
+                                      @endif
+                                    </div>
+                                    <div class="author-info">
+                                      <h4 class="name">{{ $testimonial->name }}</h4>
+                                      <span class="designation">{{ $testimonial->role }}</span>
+                                    </div>
+                                  </div>
+                                  <div class="item-number">
+                                    <span class="current-slide">{{ sprintf('%02d', $loop->iteration) }}</span>
+                                    <span class="total-slide">{{ sprintf('%02d', $loop->count) }}</span>
+                                  </div>
                                 </div>
                               </div>
-                              <div class="item-number">
-                                <span class="current-slide">01</span>
-                                <span class="total-slide">03</span>
-                              </div>
                             </div>
-                          </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                          <div class="testimonial-five__item">
-                            <div class="item-icon">
-                              <img
-                                src="{{ asset('assets/images/patisserie/testimonial/quote-icon.svg') }}"
-                                alt="author"
-                              />
-                            </div>
-                            <p class="item-text">
-                              “ From the moment you walk in, the aroma of
-                              freshly baked pastries makes you feel at home. The
-                              croissants are perfectly flaky, the cakes are rich
-                              without being too sweet, and everything feels. ”
-                            </p>
-                            <div class="item-footer">
-                              <div class="author">
-                                <div class="author-thumb">
-                                  <img
-                                    src="{{ asset('assets/images/patisserie/testimonial/author-2.png') }}"
-                                    alt=""
-                                  />
-                                </div>
-                                <div class="author-info">
-                                  <h4 class="name">Michael Smith</h4>
-                                  <span class="designation">Food Critic</span>
-                                </div>
-                              </div>
-                              <div class="item-number">
-                                <span class="current-slide">01</span>
-                                <span class="total-slide">03</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="swiper-slide">
-                          <div class="testimonial-five__item">
-                            <div class="item-icon">
-                              <img
-                                src="{{ asset('assets/images/patisserie/testimonial/quote-icon.svg') }}"
-                                alt="author"
-                              />
-                            </div>
-                            <p class="item-text">
-                              “ From the moment you walk in, the aroma of
-                              freshly baked pastries makes you feel at home. The
-                              croissants are perfectly flaky, the cakes are rich
-                              without being too sweet, and everything feels.”
-                            </p>
-                            <div class="item-footer">
-                              <div class="author">
-                                <div class="author-thumb">
-                                  <img
-                                    src="{{ asset('assets/images/patisserie/testimonial/author-3.png') }}"
-                                    alt=""
-                                  />
-                                </div>
-                                <div class="author-info">
-                                  <h4 class="name">Emily Davis</h4>
-                                  <span class="designation">Pastry Chef</span>
-                                </div>
-                              </div>
-                              <div class="item-number">
-                                <span class="current-slide">01</span>
-                                <span class="total-slide">03-</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                          @endforeach
+                        @else
+                        
+                        @endif
                       </div>
                     </div>
 
@@ -629,15 +592,15 @@
                       <div class="ratings">
                         <div class="author-thumbs">
                           <img
-                            src="{{ asset('assets/images/patisserie/testimonial/rating-avatar-1.png') }}"
+                            src="{{ asset('assets/img/rating-avatar-1.png') }}"
                             alt="thumb"
                           />
                           <img
-                            src="{{ asset('assets/images/patisserie/testimonial/rating-avatar-2.png') }}"
+                            src="{{ asset('assets/img/rating-avatar-2.png') }}"
                             alt="thumb"
                           />
                           <img
-                            src="{{ asset('assets/images/patisserie/testimonial/rating-avatar-3.png') }}"
+                            src="{{ asset('assets/img/rating-avatar-3.png') }}"
                             alt="thumb"
                           />
                         </div>
@@ -665,7 +628,7 @@
                         </div>
                       </div>
                       <img
-                        src="{{ asset('assets/images/patisserie/testimonial/brand-logo.svg') }}"
+                        src="{{ asset('assets/img/brand-logo.svg') }}"
                         alt="brand-logo"
                       />
                     </div>
@@ -698,21 +661,6 @@
           </div>
         </div>
       </section>
-      <div class="video-five section">
-        <div class="video-five__video">
-          <video
-            autoplay=""
-            loop=""
-            muted=""
-            poster="assets/images/patisserie/video/video-thumbnail.png"
-          >
-            <source
-              src="{{ asset('assets/video/patisserie/patisserie.webm') }}"
-              type="video/webm"
-            />
-          </video>
-        </div>
-      </div>
       <section class="contact-five section section-padding-top">
         <div class="container">
           <div class="row">
@@ -737,7 +685,7 @@
               <div class="contact-five__wrapper section-padding-bottom">
                 <div class="contact-five__thumb">
                   <img
-                    src="{{ asset('assets/images/patisserie/contact/contact-thumb.png') }}"
+                    src="{{ asset('assets/img/4.jpeg') }}"
                     alt="thumb"
                   />
                 </div>
@@ -745,7 +693,7 @@
                   <div class="content-icon-wrapper">
                     <div class="content-icon">
                       <img
-                        src="{{ asset('assets/images/patisserie/contact/Icon-1.svg') }}"
+                        src="{{ asset('assets/img/Icon-11.svg') }}"
                         alt="icon"
                       />
                     </div>
@@ -753,12 +701,11 @@
                   </div>
                   <div class="opening-location">
                     <h4 class="title">Location</h4>
-                    <p class="text">123 Sweet Street, City Center</p>
+                    <p class="text">{!! nl2br(e(\App\Models\Setting::get('contact_address', "123 Sweet Street, City Center"))) !!}</p>
                   </div>
                   <div class="opening-times">
                     <h4 class="title">Opening Time</h4>
-                    <p class="text">Mon – Fri: 12 PM – 10 PM</p>
-                    <p class="text">Sat – Sun: 1 PM – 11 PM</p>
+                    <p class="text">{!! nl2br(e(\App\Models\Setting::get('opening_hours', "Mon – Fri: 12 PM – 10 PM\nSat – Sun: 1 PM – 11 PM"))) !!}</p>
                   </div>
                   <a class='common-button-five' href="{{ route('contact') }}">
                     <span class="btn-text">Discover all branch</span>
@@ -942,16 +889,16 @@
             <div class="col-12">
               <div class="cta-five__content">
                 <img
-                  src="{{ asset('assets/images/patisserie/cta/badge-text.png') }}"
+                  src="{{ asset('assets/img/badge-text.png') }}"
                   alt="text"
                   class="rotating-text"
                 />
                 <div
                   class="content-box"
-                  data-background="{{ asset('assets/images/patisserie/cta/badge-pattern.png') }}"
+                  data-background="{{ asset('assets/img/badge-pattern.png') }}"
                 >
                   <img
-                    src="{{ asset('assets/images/patisserie/cta/badge-img.png') }}"
+                    src="{{ asset('assets/img/badge-img.png') }}"
                     alt="content-img"
                     class="content-img"
                   />

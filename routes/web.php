@@ -57,7 +57,11 @@ Route::get('/', function () {
             ->get();
     }
 
-    return view('index', compact('categories', 'homeMenuCategories', 'featuredItems'));
+    $testimonials = \App\Models\Testimonial::where('status', 'active')
+        ->orderBy('display_order')
+        ->get();
+
+    return view('index', compact('categories', 'homeMenuCategories', 'featuredItems', 'testimonials'));
 })->name('home');
 
 Route::get('/about', function () { 

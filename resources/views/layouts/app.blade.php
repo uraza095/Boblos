@@ -1,15 +1,13 @@
 <!doctype html>
 <html lang="en">
-  
-<!-- Mirrored from dinevo-html.netlify.app/index-5 by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 27 Jul 2026 05:33:53 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
 <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>@yield('title', 'Dinevo – Modern Restaurant & Cafe')</title>
+    <title>@yield('title', 'Boblos – Modern Restaurant & Cafe')</title>
 
     <link
       rel="icon"
@@ -31,14 +29,14 @@
 
     <!-- Preloader -->
 
-    <div class="preloader v5">
+    <!-- <div class="preloader v5">
       <div class="spinner-wrap">
         <div class="preloader-logo">
-          <img src="{{ asset('assets/images/preloader-5.svg') }}" alt="" class="img-fluid" />
+          <img src="{{ asset('assets/img/fav.png') }}" alt="" class="img-fluid" />
         </div>
         <div class="spinner"></div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Preloader End -->
 
@@ -63,7 +61,11 @@
         >
           <div class="hamburger_logo">
             <a class='mobile_logo' href="{{ route('home') }}">
-              <img src="{{ asset('assets/images/Logo_pink.png') }}" alt="Logo" />
+              @if(\App\Models\Setting::get('logo'))
+                <img src="{{ asset('storage/' . \App\Models\Setting::get('logo')) }}" alt="Logo" />
+              @else
+                <img src="{{ asset('assets/images/Logo_pink.png') }}" alt="Logo" />
+              @endif
             </a>
           </div>
           <div class="hamburger_close">

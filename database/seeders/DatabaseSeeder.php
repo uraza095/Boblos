@@ -998,16 +998,24 @@ class DatabaseSeeder extends Seeder
                             'badge' => 'Sweet & Elegant',
                             'title_line_one' => 'Simply',
                             'title_line_two' => 'Patisserie',
-                            'button_one_text' => 'View menu',
-                            'button_one_url' => '/menu',
-                            'button_two_text' => 'Book an Event',
-                            'button_two_url' => '/menu',
                             'upload_video' => '',
                         ]
                     ]
                 );
                 
-                // Only the home_hero section is maintained for the home page
+                PageSection::updateOrCreate(
+                    ['section_key' => 'home_timing'],
+                    [
+                        'page_id' => $p->id,
+                        'section_name' => 'Timing Section',
+                        'content' => [
+                            'image_one' => '',
+                            'image_two' => '',
+                        ]
+                    ]
+                );
+                
+                // Only the home_hero and home_timing sections are maintained for the home page
             } elseif ($slug === 'about') {
                 PageSection::updateOrCreate(
                     ['section_key' => 'about_story'],

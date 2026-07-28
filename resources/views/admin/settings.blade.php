@@ -29,7 +29,7 @@
             <div>
                 <label class="block text-sm font-semibold text-body-dark mb-2">Logo</label>
                 @if ($settings['logo'])
-                    <div class="mb-3 p-3 bg-brand rounded-xl inline-block">
+                    <div class="mb-3 p-3 rounded-xl inline-block">
                         <img src="{{ asset('storage/' . $settings['logo']) }}" alt="Logo" class="h-10 object-contain">
                     </div>
                 @endif
